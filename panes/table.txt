@@ -1,0 +1,20 @@
+
+       +---------------+ 
+       | Today's table | 
+       +---------------+ 
+
+surce 
+
+function div1 {
+  box 5 15 1 center
+  inbox "Today's table"
+}
+function go {
+  div1
+  div2
+}
+Today's topic and table
+
+  1. introduction
+  2. my current projects
+  3. Making in Bash
