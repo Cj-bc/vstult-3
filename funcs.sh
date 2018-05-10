@@ -11,8 +11,19 @@ function explace {
     "center") echo $(($(($2/2))-$(($3/2)) ));;
     "right") echo $(($2 - 2 - $3));; # -2 is for box line
   esac
+}
 
-
+# usage: echoletter <string text>
+function echoletter {
+  local string=$1
+  local tmp=$(mktemp /tmp/vstult-3.tmp.XXXXXX)
+  echo "$string" > $tmp
+  while IFS= read -rN1 char;
+  do
+    printf "$char"
+    sleep 0.1
+  done < $tmp
+ rm $tmp
 }
 
 # usage: box <start_y> <width> <height> <string place>
@@ -45,7 +56,7 @@ EoL=$(($start_x + $width + 1))
   for i in $(seq $height)
   do 
     tput cup $(($start_y+$i)) $start_x
-    echo -ne "| ${text[$(($i-1))]}"
+    echoletter "| ${text[$(($i-1))]}"
     tput cup $(($start_y + $i)) $EoL
     echo -ne "|\n"
   done
@@ -73,7 +84,7 @@ function text {
   esac
 
   tput cup $start_y $start_x
-  echo "$string"
+  echoletter "$string";
 
 }
 
