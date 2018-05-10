@@ -2,7 +2,7 @@
 
 TERM_LEFT=2
 TERM_MID=$(($(tput cols)/2))
-TERM_RIGHT=$((tput cols)-2))
+TERM_RIGHT=$(($(tput cols)-2))
 
 # usage: explace <place_parameter> <window width> <text＿length>
 function explace {
