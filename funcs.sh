@@ -58,6 +58,22 @@ EoL=$(($start_x + $width + 1))
 }
 
 
+# usage: echo "string" | text <int start_x|string place> <int start_y>
+function text {
+  string=$(cat -)
+  place=$1
+  start_y=$2
+  case $place in
+    "left" | "center" | "right" ) start_x=$(explace $place $(tput cols) ${#string});;
+    [1-9] | [1-9][0-9] | [1-9][0-9][0-9] ) start_x=$place;;
+  esac
+
+  tput cup $start_y $start_x
+  echo "$string"
+
+}
+
 case $1 in
   "box") shift; box $@;;
+  "text") shift;text $@;;
 esac
