@@ -18,7 +18,13 @@ function box {
   local height=$3
   local place=$4
   local window=( "$(tput lines)" "$(tput cols)")
-
+  if [ "$5" = "-t" ]
+  then
+    while read line
+    do
+      text=(${text} "$line")
+    done
+  fi
   local start_x=$(($(explace $place ${window[1]} $width)))
 
 # write top "+------+"
@@ -31,14 +37,12 @@ function box {
   echo -ne "+\n"
 
 # write mid "|            |"
+EoL=$(($start_x + $width + 1))
   for i in $(seq $height)
   do 
     tput cup $(($start_y+$i)) $start_x
-    echo -ne "|"
-    for num in $(seq $width)
-    do
-      echo -ne " "
-    done                      
+    echo -ne "| ${text[$(($i-1))]}"
+    tput cup $(($start_y + $i)) $EoL
     echo -ne "|\n"
   done
 
