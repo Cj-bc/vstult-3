@@ -1,20 +1,5 @@
+echo "今日の目次" | box 10 15 1 center -t
 
-       +---------------+ 
-       | Today's table | 
-       +---------------+ 
-
-surce 
-
-function div1 {
-  box 5 15 1 center
-  inbox "Today's table"
-}
-function go {
-  div1
-  div2
-}
-Today's topic and table
-
-  1. introduction
-  2. my current projects
-  3. Making in Bash
+echo "1. 自己紹介" | text $(($TERM_MID - 10)) 14
+echo "2. 主なプロジェクト" | text $(($TERM_MID - 10)) 15
+echo "3. 各プロジェクトについて" | text $(($ TERM_MID - 10)) 16
