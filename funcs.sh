@@ -3,14 +3,15 @@
 # usage: explace <place_parameter> <window width> <text＿length>
 function explace {
   case "$1" in
-    "left") echo 2
-      "center") echo $($( $2 / 2 ) - $( $3 / 2))
-    "right") echo $($2 - 2)
+    "left") echo 2;;
+    "center") echo $(($(($2/2))-$(($3/2)) ));;
+    "right") echo $(($2 - 2 - $3));; # -2 is for box line
   esac
 
 
 }
 
+# usage: box <start_y> <width> <height> <string place>
 function box {
   local start_y=$1
   local width=$2
@@ -18,33 +19,38 @@ function box {
   local place=$4
   local window=( "$(tput lines)" "$(tput cols)")
 
-  local start_x= $($(explace $place ${window[1]}) - $( $width / 2)))
+  local start_x=$(($(explace $place ${window[1]} $width)))
 
 # write top "+------+"
   tput cup $start_y $start_x
-  echo "+"
+  echo -n "+"
   for num in $(seq $width)
   do
-    echo "-"
+    echo -ne "-"
   done
-  echo "+\r"
+  echo -ne "+\n"
 
-  for i in ¥(seq $height)
+# write mid "|            |"
+  for i in $(seq $height)
   do 
-    echo "|"
+    tput cup $(($start_y+$i)) $start_x
+    echo -ne "|"
     for num in $(seq $width)
     do
-      echo " "
+      echo -ne " "
     done                      
-    echo "|\r"
+    echo -ne "|\n"
   done
 
-  echo "+"
+# write bottom "+-----------+"
+  tput cup $(($start_y + $height +1)) $start_x
+  echo -ne "+"
   for num in $(seq $width)
   do
-    echo "-"
+    echo -ne "-"
+     
   done
-  echo "+\r"
+  echo -ne "+\n"
 }
 
 
