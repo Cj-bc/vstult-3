@@ -49,5 +49,5 @@ function box {
 
 
 case $1 in
-  "go": go
-  esac
+  "box") shift; box $@;;
+esac
