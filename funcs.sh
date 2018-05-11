@@ -1,5 +1,12 @@
 #/usr/local/bin/bash
 
+TERM_X_LEFT=2
+TERM_X_MID=$(($(tput cols) / 2))
+TERM_X_RIGIT=$(($(tput cols) - 2))
+TERM_Y_TOP=1
+TERM_Y_MID=$(($(tput lines) /2))
+TERM_Y_BOTTOM=$(tput lines)
+
 # usage: explace <place_parameter> <window width> <text＿length>
 function explace {
   case "$1" in
