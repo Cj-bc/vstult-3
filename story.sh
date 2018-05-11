@@ -1,8 +1,6 @@
 #!/usr/local/bin/bash
 
-#source .sourcefiles
-IFSorigin=$IFS
-Pages=( "table" "introduction" )
+Pages=( "title" "table" "introduction")
 for paneNum in ${Pages[@]}
 do
   read tap
@@ -12,13 +10,7 @@ do
   done
 
   clear
-  say -v "Alex" -f panes/$paneNum.txt &
-  while IFS= read -rN1 char;
-  do
-    printf "$char";
-    sleep 0.1;
-  done < panes/$paneNum.txt
+  ./panes/${paneNum}.sh
 
 
 done
-IFS=$IFSorigin
