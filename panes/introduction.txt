@@ -1,4 +1,0 @@
-
-Hello, I'm Cj.bc-sd
-I often live in Bash on tmux.
-
