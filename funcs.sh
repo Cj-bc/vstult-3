@@ -36,15 +36,16 @@ function box {
   local height=$3
   local place=$4
   local window=( "$(tput lines)" "$(tput cols)")
-  if [ "$5" = "-t" ]
+  local text=()
+  if [ -p /dev/stdin ]
   then
     while read line
     do
-      text=(${text} "$line")
+      text=("${text[@]}" "$line")
     done
   fi
   local start_x=$(($(explace $place ${window[1]} $width)))
-
+  
 # write top "+------+"
   tput cup $start_y $start_x
   echo -n "+"
@@ -73,6 +74,7 @@ EoL=$(($start_x + $width + 1))
      
   done
   echo -ne "+\n"
+
 }
 
 
