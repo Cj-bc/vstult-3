@@ -34,8 +34,8 @@ profile=( \
 
 
  i=0
- for i in $(seq ${#profile})
-do
+ for ((i=0;i < ${#profile}; i++))
+ do
 # echo ${profile[$i]}
   echo ${profile[$i]} | ./54ysh/54ysh.sh | text $(($TERM_X_LEFT + 5)) $(($Logo_y + $Logo_height + 4 + $i))
 done
