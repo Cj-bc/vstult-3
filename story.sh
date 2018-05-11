@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-Pages=( "title" "table" "introduction")
+Pages=( "title" "table" "introduction" "main-projects" "other-activities")
 for paneNum in ${Pages[@]}
 do
   read tap
