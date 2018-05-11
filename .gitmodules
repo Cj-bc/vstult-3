@@ -1,3 +1,6 @@
 [submodule "54ysh"]
 	path = 54ysh
 	url = https://github.com/Cj-bc/54ysh
+[submodule "ylcomment"]
+	path = ylcomment
+	url = https://github.com/midorigoke/ylcomment
