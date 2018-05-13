@@ -14,3 +14,6 @@ do
   clear
   ./panes/${paneNum}.sh
 done
+
+rm vstult.anno.p
+rm p
