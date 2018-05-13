@@ -1,0 +1,1 @@
+make function to use 54ysh to speak up by default
