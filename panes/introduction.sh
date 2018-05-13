@@ -2,19 +2,20 @@
 
 source funcs.sh
 Logo_y=9
-Logo_height=6
+Logo_height=7
 tput cup $Logo_y 1
 
+echo "先ずは自己紹介からします。" | tee vstult.anno.p | ./54ysh/54ysh.sh
+wait
+echo "どうも、シージェードットびーしーえすディーです。学生やってます。バッシュが好きです" | tee vstult.anno.p | ./54ysh/54ysh.sh
 cat << EOT
-
-
-
-
-
-
-
-
-
+     _/_/_/  _/      _/                                              _/   
+  _/                _/_/_/      _/_/_/                _/_/_/    _/_/_/    
+ _/        _/      _/    _/  _/        _/_/_/_/_/  _/_/      _/    _/     
+_/        _/      _/    _/  _/                        _/_/  _/    _/      
+ _/_/_/  _/  _/  _/_/_/      _/_/_/              _/_/_/      _/_/_/       
+        _/                                                                
+     _/                                                                   
 EOT
 
 profile=( \
@@ -25,17 +26,21 @@ profile=( \
   ""                           \
   "Github: Cj-bc"              \
   "Twitter: @Cj_bc_sd"         \
-  "Instagram:"                 \
-  "Qiita: "                    \
+  "Instagram: cj.bc_sd"                 \
+  "Qiita: @Cj-bc"                    \
   ""                           \
   "And also, my team:"         \
-  " y-modify (Twitter:@ymodify)" \
+  " y-modify (Twitter:@ymodify314)" \
   )
 
-
+wait
  i=0
+ mkfifo p
  for ((i=0;i < ${#profile}; i++))
  do
-# echo ${profile[$i]}
-  echo ${profile[$i]} | ./54ysh/54ysh.sh | text $(($TERM_X_LEFT + 5)) $(($Logo_y + $Logo_height + 4 + $i))
+  echo ${profile[$i]} | tee p |  ./54ysh/54ysh.sh & text $(($TERM_X_LEFT + 5)) $(($Logo_y + $Logo_height + 4 + $i)) < p
+  wait
 done
+ rm p
+
+tput cup 1 1 
