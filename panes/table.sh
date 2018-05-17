@@ -1,6 +1,7 @@
 #!/usr/local/bin/bash
 source funcs.sh
 echo "今日の目次" |tee p | ../54ysh/54ysh.sh & box 10 15 1 center < p
+wait
 
 echo "1. 自己紹介" | tee p | ../54ysh/54ysh.sh & text $(($TERM_X_MID - 10)) 14 < p
 wait
