@@ -12,7 +12,12 @@ do
  done
 
   clear
-  ./panes/${paneNum}.sh
+  if [ "$1" = "-x" ]
+  then
+    bash -vx ./panes/${paneNum}.sh
+  else
+    ./panes/${paneNum}.sh
+  fi
 done
 
 rm vstult.anno.p
