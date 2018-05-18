@@ -119,6 +119,22 @@ function rwtext {
   return 0
 }
 
+
+# an wrapper of 'text'.this can speak up the text using 54ysh
+# @param <int start_y> <int width> <int height> <string place>
+# @stdin string text to speak up and write down
+# @return 0 success
+function rwbox {
+  local string=$(cat -)
+
+  mkfifo rwbox.p
+  echo "$string" | tee rwbox.p | ./54ysh/54ysh.sh & box $1 $2 $3 $4 < rwbox.p
+  rm rwbox.p
+
+  return 0
+}
+
+
 # for command-line use
 case $1 in
   "box") shift; box $@;;
