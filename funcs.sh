@@ -80,7 +80,6 @@ function box {
   for num in $(seq $width)
   do
     echo -ne "-"
-     
   done
   echo -ne "+\n"
 
@@ -102,6 +101,20 @@ function text {
 
   tput cup $start_y $start_x
   echoletter "$string"
+
+  return 0
+}
+
+# an wrapper of 'text'.this can speak up the text using 54ysh
+# @param stdin <int start_x|string place> <int start_y>
+# @stdin string text to speak up and write down
+# @return 0 success
+function rwtext {
+  local string=$(cat -)
+
+  mkfifo rwtext.p
+  echo "$string" | tee rwtext.p | ./54ysh//54ysh.sh & text $1 $2 < rwtext.p
+  rm rwtext.p
 
   return 0
 }
