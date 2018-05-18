@@ -7,7 +7,10 @@ TERM_Y_TOP=1
 TERM_Y_MID=$(($(tput lines) /2))
 TERM_Y_BOTTOM=$(tput lines)
 
-# usage: explace <place_parameter> <window width> <text＿length>
+# calculate x coordinate from string to the real number
+# @param <place_parameter> <window width> <text＿length>
+# @return 0 success
+# @return 1 position name is not defined
 function explace {
   case "$1" in
     "left") echo 2;;
@@ -16,7 +19,9 @@ function explace {
   esac
 }
 
-# usage: echoletter <string text>
+# echo string letter by letter
+# @param <string text>
+# @return 0 success
 function echoletter {
   local string=$1
   local tmp=$(mktemp /tmp/vstult-3.tmp.XXXXXX)
@@ -29,7 +34,10 @@ function echoletter {
  rm $tmp
 }
 
-# usage: box <start_y> <width> <height> <string place>
+# draw a box from specified position & size. can contains texts
+# @param <start_y> <width> <height> <string place>
+# @stdin string text which will be written in the box
+# @return 0 success
 function box {
   local start_y=$1
   local width=$2
@@ -78,7 +86,10 @@ EoL=$(($start_x + $width + 1))
 }
 
 
-# usage: echo "string" | text <int start_x|string place> <int start_y>
+# write text from specified position letter by letter
+# @param stdin <int start_x|string place> <int start_y>
+# @stdin string text-to-display
+# @return 0 success
 function text {
   string=$(cat -)
   place=$1
@@ -93,6 +104,7 @@ function text {
 
 }
 
+# for command-line use
 case $1 in
   "box") shift; box $@;;
   "text") shift;text $@;;
