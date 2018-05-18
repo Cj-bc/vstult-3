@@ -1,3 +1,3 @@
-make function to use 54ysh to speak up by default
-add comments to funcs.sh
-finish making wrapper rwtext
+fix main-projects.sh
+fix table.sh fix introduce.sh
+ fix intoroduce.sh
