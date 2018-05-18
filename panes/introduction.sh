@@ -37,7 +37,7 @@ wait
  i=0
  for ((i=0;i < ${#profile}; i++))
  do
-  echo ${profile[$i]} | tee p |  ./54ysh/54ysh.sh & text $(($TERM_X_LEFT + 5)) $(($Logo_y + $Logo_height + 4 + $i)) < p
+  echo ${profile[$i]} | rwtext $(($TERM_X_LEFT + 5)) $(($Logo_y + $Logo_height + 4 + $i))
   wait
 done
 
