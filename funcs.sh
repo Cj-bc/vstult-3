@@ -36,7 +36,7 @@ function echoletter {
 }
 
 # draw a box from specified position & size. can contains texts
-# @param <start_y> <width> <height> <string place>
+# @param <int start_y> <int width> <int height> <string place>
 # @stdin string text which will be written in the box
 # @return 0 success
 function box {
@@ -110,10 +110,10 @@ function text {
 # @stdin string text to speak up and write down
 # @return 0 success
 function rwtext {
-  local string=$(cat -)
+  local string="$(cat -)"
 
   mkfifo rwtext.p
-  echo "$string" | tee rwtext.p | ./54ysh//54ysh.sh & text $1 $2 < rwtext.p
+  echo "$string" | tee rwtext.p | ./54ysh/54ysh.sh & text $1 $2 < rwtext.p
   rm rwtext.p
 
   return 0
