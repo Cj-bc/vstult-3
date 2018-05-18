@@ -16,6 +16,7 @@ function explace {
     "left") echo 2;;
     "center") echo $(($(($2/2))-$(($3/2)) ));;
     "right") echo $(($2 - 2 - $3));; # -2 is for box line
+    * ) echo "error"; return 1;;
   esac
 }
 
@@ -64,7 +65,7 @@ function box {
   echo -ne "+\n"
 
 # write mid "|            |"
-EoL=$(($start_x + $width + 1))
+  local EoL=$(($start_x + $width + 1))
   for i in $(seq $height)
   do 
     tput cup $(($start_y+$i)) $start_x
@@ -100,8 +101,9 @@ function text {
   esac
 
   tput cup $start_y $start_x
-  echoletter "$string";
+  echoletter "$string"
 
+  return 0
 }
 
 # for command-line use
