@@ -5,9 +5,9 @@ Logo_y=9
 Logo_height=7
 tput cup $Logo_y 1
 
-echo "先ずは自己紹介からします。" | tee vstult.anno.p | ./54ysh/54ysh.sh
+echo "先ずは自己紹介からします。" | tee vstult.anno.p | ./54ysh/54ysh.sh < vstult.anno.p
 wait
-echo "どうも、シージェードットびーしーえすディーです。学生やってます。バッシュが好きです" | tee vstult.anno.p | ./54ysh/54ysh.sh
+echo "どうも、シージェードットびーしーえすディーです。学生やってます。バッシュが好きです" | tee vstult.anno.p | ./54ysh/54ysh.sh < vstult.anno.p
 cat << EOT
      _/_/_/  _/      _/                                              _/
   _/                _/_/_/      _/_/_/                _/_/_/    _/_/_/ 
